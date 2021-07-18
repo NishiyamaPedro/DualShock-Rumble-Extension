@@ -3,6 +3,7 @@
 #include <string>
 #include <mutex>
 #include <vector>
+#include <map>
 
 namespace vibration {
 
@@ -12,7 +13,7 @@ namespace vibration {
 		public:
 			void operator()(std::thread* t) const {
 				if (t->joinable()) {
-					VibrationController::Reset();
+					VibrationController::Reset(0, t);
 				}
 				else
 					delete t;
@@ -21,8 +22,8 @@ namespace vibration {
 
 		static std::vector<std::wstring> hidDevPath;
 		static std::mutex mtxSync;
-		static std::unique_ptr<std::thread, VibrationThreadDeleter> thrVibration;
-
+		static std::unique_ptr<std::thread, VibrationThreadDeleter> thrVibration[2];
+		
 		VibrationController();
 		~VibrationController();
 
@@ -30,11 +31,11 @@ namespace vibration {
 		static void VibrationThreadEntryPoint(DWORD dwID);
 
 	public:
-		static void SetHidDevicePath(LPWSTR path);
+		static void SetHidDevicePath(LPWSTR path, DWORD dwID);
 		static void StartEffect(DWORD dwEffectID, LPCDIEFFECT peff, DWORD dwID);
-		static void StopEffect(DWORD dwEffectID);
-		static void StopAllEffects();
-		static void Reset();
+		static void StopEffect(DWORD dwEffectID, DWORD dwID);
+		static void StopAllEffects(DWORD dwID);
+		static void Reset(DWORD dwID, std::thread* t = NULL);
 	};
 
 }

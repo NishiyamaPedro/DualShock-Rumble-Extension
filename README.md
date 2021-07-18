@@ -1,6 +1,7 @@
 # DualShock Rumble Extension
 
-Driver to enable the rumble feature of the DualShock on **VID_0D9D&PID_3012** adapters.
+Driver to enable the rumble feature of the DualShock on **VID_0D9D&PID_3012** adapters. 
+Both ports work simultaneously.
 
 ## Instalation
 Use the latest installer found here:
@@ -8,10 +9,6 @@ Use the latest installer found here:
 https://github.com/NishiyamaPedro/DualShock-Rumble-Extension/releases
 
 **It is highly recommended that you use HidHide and xOutput 3 with this driver for the best experience.**
-
-### Know Issus
-
- - Port 2 vibrations are being redirected to the Port 1.
 
 ### Credits
 

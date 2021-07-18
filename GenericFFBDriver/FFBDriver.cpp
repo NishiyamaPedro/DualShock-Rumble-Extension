@@ -29,7 +29,8 @@ FFBDriver::FFBDriver()
 
 FFBDriver::~FFBDriver()
 {
-	vibration::VibrationController::Reset();
+	vibration::VibrationController::Reset(0);
+	vibration::VibrationController::Reset(1);
 }
 
 
@@ -62,7 +63,7 @@ HRESULT STDMETHODCALLTYPE FFBDriver::DeviceID(
 	LogMessage(buff);
 #endif
 
-	vibration::VibrationController::SetHidDevicePath(lpDIHIDInitInfo->pwszDeviceInterface);
+	vibration::VibrationController::SetHidDevicePath(lpDIHIDInitInfo->pwszDeviceInterface, dwExternalID);
 
 	return S_OK;
 }
@@ -119,11 +120,11 @@ HRESULT STDMETHODCALLTYPE FFBDriver::SendForceFeedbackCommand(
 
 	switch (dwCommand) {
 	case DISFFC_RESET:
-		vibration::VibrationController::Reset();
+		vibration::VibrationController::Reset(dwID);
 		break;
 
 	case DISFFC_STOPALL:
-		vibration::VibrationController::StopAllEffects();
+		vibration::VibrationController::StopAllEffects(dwID);
 		break;
 
 	case DISFFC_PAUSE:
