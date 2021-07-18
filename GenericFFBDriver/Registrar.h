@@ -132,9 +132,9 @@ public:
 			return false;
 
 		// Creating DirectInput keys
-		const char* oemPath = "SYSTEM\\CurrentControlSet\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_0079&PID_0006\\OEMForceFeedback";
+		const char* oemPath = "SYSTEM\\CurrentControlSet\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_0D9D&PID_3012\\OEMForceFeedback";
 		
-		if (!SetInRegistry(HKEY_LOCAL_MACHINE, oemPath, "CLSID", "{0AB5665A-4549-4FD0-A952-5A2B9699BDA8}"))
+		if (!SetInRegistry(HKEY_LOCAL_MACHINE, oemPath, "CLSID", "{B4FE8B13-40D0-438A-B4C2-DE4522951071}"))
 			return false;
 
 		const byte attrVal[] = { 
@@ -146,7 +146,7 @@ public:
 			return false;
 		
 		// Registering Axe attributes
-		const char* axePath = "SYSTEM\\CurrentControlSet\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_0079&PID_0006\\Axes";
+		const char* axePath = "SYSTEM\\CurrentControlSet\\Control\\MediaProperties\\PrivateProperties\\Joystick\\OEM\\VID_0D9D&PID_3012\\Axes";
 		byte axeAttrData[] = {
 			0x01, 0x81, 0x00, 0x00, 0x01, 0x00, 0x30, 0x00
 		};

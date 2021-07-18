@@ -2,6 +2,7 @@
 #include "../stdafx.h"
 #include <string>
 #include <mutex>
+#include <vector>
 
 namespace vibration {
 
@@ -18,19 +19,19 @@ namespace vibration {
 			}
 		};
 
-		static std::wstring hidDevPath;
+		static std::vector<std::wstring> hidDevPath;
 		static std::mutex mtxSync;
 		static std::unique_ptr<std::thread, VibrationThreadDeleter> thrVibration;
 
 		VibrationController();
 		~VibrationController();
 
-		static void StartVibrationThread();
-		static void VibrationThreadEntryPoint();
+		static void StartVibrationThread(DWORD dwID);
+		static void VibrationThreadEntryPoint(DWORD dwID);
 
 	public:
 		static void SetHidDevicePath(LPWSTR path);
-		static void StartEffect(DWORD dwEffectID, LPCDIEFFECT peff);
+		static void StartEffect(DWORD dwEffectID, LPCDIEFFECT peff, DWORD dwID);
 		static void StopEffect(DWORD dwEffectID);
 		static void StopAllEffects();
 		static void Reset();

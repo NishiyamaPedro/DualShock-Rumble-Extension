@@ -10,25 +10,21 @@
 namespace vibration {
 	bool quitVibrationThread = false;
 
-	const byte GP_STOP_COMMAND[8] = {
-		0x00, 0xf3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+	const byte GP_STOP_COMMAND[5] = {
+		0x01, 0x01, 0x00, 0x00, 0x00
 	};
 	void SendHidCommand(HANDLE hHidDevice, const byte* buff, DWORD buffsz) {
-		HidD_SetOutputReport(hHidDevice, (PVOID)buff, 8);
+		HidD_SetOutputReport(hHidDevice, (PVOID)buff, 5);
 	}
 	void SendVibrationForce(HANDLE hHidDevice, byte forceSmallMotor, byte forceBigMotor) {
-		const byte buffer1[8] = {
-			0x00, 0x51, 0x00, forceSmallMotor, 0x00, forceBigMotor, 0x00, 0x00
-		};
-		const byte buffer2[8] = {
-			0x00, 0xfa, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00
+		const byte buffer1[5] = {
+			0x01, 0x01, 0x00, forceBigMotor, forceSmallMotor
 		};
 
-		SendHidCommand(hHidDevice, (const byte*)&buffer1, 8);
-		SendHidCommand(hHidDevice, (const byte*)&buffer2, 8);
+		SendHidCommand(hHidDevice, (const byte*)&buffer1, 5);
 	}
 	void SendVibrationStop(HANDLE hHidDevice) {
-		SendHidCommand(hHidDevice, (const byte*)&GP_STOP_COMMAND, 8);
+		SendHidCommand(hHidDevice, (const byte*)&GP_STOP_COMMAND, 5);
 	}
 
 	struct VibrationEff {
@@ -45,7 +41,7 @@ namespace vibration {
 
 	VibrationEff VibEffects[MAX_EFFECTS];
 
-	std::wstring VibrationController::hidDevPath;
+	std::vector<std::wstring> VibrationController::hidDevPath;
 	std::mutex VibrationController::mtxSync;
 	std::unique_ptr<std::thread, VibrationController::VibrationThreadDeleter> VibrationController::thrVibration;
 
@@ -58,7 +54,7 @@ namespace vibration {
 	{
 	}
 
-	void VibrationController::StartVibrationThread()
+	void VibrationController::StartVibrationThread(DWORD dwID)
 	{
 		mtxSync.lock();
 
@@ -70,17 +66,17 @@ namespace vibration {
 				VibEffects[k].dwEffectId = -1;
 			}
 
-			thrVibration.reset(new std::thread(VibrationController::VibrationThreadEntryPoint));
+			thrVibration.reset(new std::thread(VibrationController::VibrationThreadEntryPoint, dwID));
 		}
 
 		mtxSync.unlock();
 	}
 
-	void VibrationController::VibrationThreadEntryPoint()
+	void VibrationController::VibrationThreadEntryPoint(DWORD dwID)
 	{
 		// Initialization
 		HANDLE hHidDevice = CreateFile(
-			hidDevPath.c_str(),
+			hidDevPath[0].c_str(), // Will only use adapter's port 1 for now
 			GENERIC_WRITE | GENERIC_READ,
 			FILE_SHARE_WRITE | FILE_SHARE_READ,
 			NULL,
@@ -113,14 +109,11 @@ namespace vibration {
 
 						if (VibEffects[k].dwStopFrame <= frame) {
 							VibEffects[k].isActive = FALSE;
-
 						}
 						else {
 							forceX = MAXC(forceX, VibEffects[k].forceX);
 							forceY = MAXC(forceY, VibEffects[k].forceY);
-
 						}
-
 					}
 					else {
 						forceX = MAXC(forceX, VibEffects[k].forceX);
@@ -136,8 +129,6 @@ namespace vibration {
 							DWORD frmStop = VibEffects[k].dwStopFrame;
 
 							DWORD dt = frmStart <= frmStop ? frmStop - frmStart : frmStart + 100;
-							//if (dt > 750)
-							//	dt = 750;
 
 							VibEffects[k].dwStopFrame = frame + dt;
 						}
@@ -171,20 +162,18 @@ namespace vibration {
 		}
 
 		if (hHidDevice != NULL) {
-			// Send stop command
 			SendVibrationStop(hHidDevice);
-
 			CloseHandle(hHidDevice);
 		}
 	}
 
 	void VibrationController::SetHidDevicePath(LPWSTR path)
 	{
-		hidDevPath = path;
+		hidDevPath.push_back(path);
 		Reset();
 	}
 
-	void VibrationController::StartEffect(DWORD dwEffectID, LPCDIEFFECT peff)
+	void VibrationController::StartEffect(DWORD dwEffectID, LPCDIEFFECT peff, DWORD dwID)
 	{
 		mtxSync.lock();
 
@@ -276,7 +265,7 @@ namespace vibration {
 		VibEffects[idx].started = FALSE;
 
 		mtxSync.unlock();
-		StartVibrationThread();
+		StartVibrationThread(dwID);
 	}
 
 	void VibrationController::StopEffect(DWORD dwEffectID)

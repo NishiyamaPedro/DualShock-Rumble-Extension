@@ -17,7 +17,7 @@ void LogMessage(const char* msg) {
 	printf(buffer);
 
 	std::ofstream outfile;
-	outfile.open("J:\\Gamepad\\driverlog.txt", std::ios_base::app);
+	outfile.open("D:\\driverlog.txt", std::ios_base::app);
 	outfile << buffer;
 	outfile.close();
 #endif
@@ -158,7 +158,7 @@ HRESULT STDMETHODCALLTYPE FFBDriver::DownloadEffect(
 	LogMessage(buff);
 #endif
 
-	vibration::VibrationController::StartEffect(dwEffectID, peff);
+	vibration::VibrationController::StartEffect(dwEffectID, peff, dwID);
 	return S_OK;
 }
 

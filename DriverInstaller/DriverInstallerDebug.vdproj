@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:DriverInstaller"
+"ProjectName" = "8:DriverInstallerDebug"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -15,13 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_C378259A8D8C4FB880EAEC27ECC1720F"
+        "MsmKey" = "8:_9A855B283BFC488DBE4152B94AFCF1C5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_CACB481DB8B74D96B26F50DCA0C3F56A"
+        "MsmKey" = "8:_9DF9D13D2E094E0EB10939E8BFD399EE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -33,7 +33,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:..\\Release\\VibrationDriverInstaller.msi"
+        "OutputFilename" = "8:..\\Debug\\VibrationDriverInstaller.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -96,7 +96,7 @@
             {
             "Name" = "8:GenericFFBDriver32.dll"
             "Condition" = "8:"
-            "Object" = "8:_CACB481DB8B74D96B26F50DCA0C3F56A"
+            "Object" = "8:"
             "FileType" = "3:1"
             "InstallAction" = "3:1"
             "Arguments" = "8:"
@@ -121,12 +121,12 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C378259A8D8C4FB880EAEC27ECC1720F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9A855B283BFC488DBE4152B94AFCF1C5"
             {
-            "SourcePath" = "8:..\\Release\\GenericFFBDriver64.dll"
-            "TargetName" = "8:GenericFFBDriver64.dll"
+            "SourcePath" = "8:..\\Debug\\GenericFFBDriver32.dll"
+            "TargetName" = "8:GenericFFBDriver32.dll"
             "Tag" = "8:"
-            "Folder" = "8:_08365EDD8FF742F7A8EA90AD36CEE015"
+            "Folder" = "8:_70D2A39DB17244D1A08BF53BE196346B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -141,12 +141,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CACB481DB8B74D96B26F50DCA0C3F56A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9DF9D13D2E094E0EB10939E8BFD399EE"
             {
-            "SourcePath" = "8:..\\Release\\GenericFFBDriver32.dll"
-            "TargetName" = "8:GenericFFBDriver32.dll"
+            "SourcePath" = "8:..\\Debug\\GenericFFBDriver64.dll"
+            "TargetName" = "8:GenericFFBDriver64.dll"
             "Tag" = "8:"
-            "Folder" = "8:_08365EDD8FF742F7A8EA90AD36CEE015"
+            "Folder" = "8:_70D2A39DB17244D1A08BF53BE196346B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -156,7 +156,7 @@
             "Permanent" = "11:FALSE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
-            "Register" = "3:4"
+            "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
@@ -240,7 +240,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Generic USB Gamepad Vibration Driver"
         "ProductCode" = "8:{50CD8B4D-CD82-49D1-9E0A-2B7887448068}"
-        "PackageCode" = "8:{EDB47070-D2FC-442D-95F2-A102800934A9}"
+        "PackageCode" = "8:{FD3782BF-AD47-4F2E-8EFE-E5F85136487E}"
         "UpgradeCode" = "8:{A08375A2-DC94-4A88-8431-ED8D9717FA62}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -373,7 +373,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_27D0116D431343499F8962DAE0B00519"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Finished"
+                    "DisplayName" = "8:Concluído"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFinishedDlg.wid"
@@ -404,7 +404,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_4D7B9E7D283848AC86EBDCF44654BE9C"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Progress"
+                    "DisplayName" = "8:Progresso"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminProgressDlg.wid"
@@ -448,7 +448,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_65F0BC8F89BB4BFBBA673E2CB16B605F"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Progress"
+                    "DisplayName" = "8:Progresso"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdProgressDlg.wid"
@@ -498,7 +498,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_6B933086611643879EEF520AA3F86685"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Welcome"
+                    "DisplayName" = "8:Bem-vindo"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminWelcomeDlg.wid"
@@ -546,7 +546,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_9BE8FAE1869B4AF9A0C02B28C9389574"
                     {
                     "Sequence" = "3:300"
-                    "DisplayName" = "8:Confirm Installation"
+                    "DisplayName" = "8:Confirmar Instalação"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminConfirmDlg.wid"
@@ -583,7 +583,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_55481C96BD37447D9F16309504026CE4"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Finished"
+                    "DisplayName" = "8:Concluído"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdFinishedDlg.wid"
@@ -627,7 +627,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_DD51DDF859CE471FA216BD8D94DC9BF2"
                     {
                     "Sequence" = "3:300"
-                    "DisplayName" = "8:Confirm Installation"
+                    "DisplayName" = "8:Confirmar Instalação"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdConfirmDlg.wid"
@@ -649,7 +649,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_F1A2FA987BAA486495F47BEBD0FEDCCA"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Welcome"
+                    "DisplayName" = "8:Bem-vindo"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdWelcomeDlg.wid"
