@@ -7,7 +7,7 @@ Use the latest installer found here:
 
 https://github.com/NishiyamaPedro/DualShock-Rumble-Extension/releases
 
-**It is highly recommended that you use HidHide with xOutput 3 with this driver for the best experience.**
+**It is highly recommended that you use HidHide and xOutput 3 with this driver for the best experience.**
 
 ### Know Issus
 

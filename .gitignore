@@ -4,6 +4,7 @@ x86/
 Debug/
 Release/
 obj/
+.vs/
 
 *.db
 *.opendb
